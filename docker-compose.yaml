@@ -1,0 +1,44 @@
+version: '3'
+services:
+  apache1:
+    image: 'arjun1638/apachev2:latest'
+    command: '/usr/sbin/apache2ctl -D FOREGROUND'
+    networks:
+      go-test:      
+        ipv4_address: 172.20.0.2
+    tty: true         
+  
+  apache2:
+    image: 'arjun1638/apachev2:latest'
+    command: '/usr/sbin/apache2ctl -D FOREGROUND'
+    networks:
+      go-test:      
+        ipv4_address: 172.20.0.3
+    tty: true
+    
+  apache3:
+    image: 'arjun1638/apachev2:latest'
+    command: '/usr/sbin/apache2ctl -D FOREGROUND'
+    networks:
+      go-test:      
+        ipv4_address: 172.20.0.4
+    tty: true
+
+
+  gob:
+    image: 'arjun1638/gobv2:latest'
+    command: '/gobetween -c /etc/gobetween/conf/gobetween.toml'
+    ports:
+      - "3000:3000"
+    networks:
+      go-test:
+        ipv4_address: 172.20.0.5
+    tty: true
+
+networks:
+  go-test:
+    driver: bridge 
+    ipam:      
+      driver: default
+      config: 
+        - subnet: 172.20.0.0/16

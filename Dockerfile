@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=scratch
+ARG BASE_IMAGE=ubuntu:xenial
 
 # ---------------------  dev (build) image --------------------- #
 
@@ -31,10 +31,14 @@ WORKDIR /
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /opt/gobetween/bin/gobetween  .
+#ADD gobetween.toml /etc/gobetween/conf/gobetween.toml
+ADD /t1/gobetween.toml /etc/gobetween/conf/
+#CMD ["/gobetween", "-c", "/etc/gobetween/conf/gobetween.toml"]
+RUN mkdir /tngbench_share
 
-CMD ["/gobetween", "-c", "/etc/gobetween/conf/gobetween.toml"]
+ADD start.sh start.sh
+RUN chmod +x start.sh
+ADD stop.sh stop.sh
+RUN chmod +x stop.sh
 
-LABEL org.label-schema.vendor="gobetween" \
-      org.label-schema.url="http://gobetween.io" \
-      org.label-schema.name="gobetween" \
-      org.label-schema.description="Modern & minimalistic load balancer for the Сloud era"
+CMD /bin/bash

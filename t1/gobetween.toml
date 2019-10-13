@@ -76,14 +76,14 @@ backend_connection_timeout = "0" # Backend connection timeout (ignored in udp)
 
 [servers.sample]
 protocol = "tcp"
-bind = "0.0.0.0:3000"
+bind = "172.20.0.5:3000"
 
   [servers.sample.discovery]
   kind = "static"
   static_list = [
-      "0.0.0.0:8000 weight=40 priority=1",
-      "0.0.0.0:8001 weight=60 priority=1",
-      "localhost:8002 weight=100 priority=0"
+      "172.20.0.2:80 weight=40 priority=1",
+      "172.20.0.3:80 weight=60 priority=1",
+      "172.20.0.4:80 weight=100 priority=0"
   ]
 
 # ---------- udp example ----------- #

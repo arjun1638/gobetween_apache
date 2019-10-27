@@ -18,7 +18,7 @@ output = "stdout" # "stdout" | "stderr" | "/path/to/gobetween.log"
 #
 [profiler]
 enabled = false # false | true
-bind = ":6060"  # "host:port"
+bind = "20.0.0.254:6060"  # "host:port"
 
 #
 # REST API server configuration
@@ -41,7 +41,7 @@ cors = false    # cross-origin resource sharing
 #
 [metrics]
 enabled = false # false | true
-bind = ":9284"  # "host:port"
+bind = "20.0.0.254:9284"  # "host:port"
 
 #
 # Default values for server configuration, may be overriden in [servers] sections.
@@ -76,14 +76,13 @@ backend_connection_timeout = "0" # Backend connection timeout (ignored in udp)
 
 [servers.sample]
 protocol = "tcp"
-bind = "172.20.0.5:3000"
+bind = "20.0.0.254:3000"
 
   [servers.sample.discovery]
   kind = "static"
   static_list = [
-      "172.20.0.2:80 weight=40 priority=1",
-      "172.20.0.3:80 weight=60 priority=1",
-      "172.20.0.4:80 weight=100 priority=0"
+      "40.0.0.254:80 weight=50 priority=0",
+      "50.0.0.254:80 weight=50 priority=0"
   ]
 
 # ---------- udp example ----------- #

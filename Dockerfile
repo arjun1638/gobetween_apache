@@ -26,7 +26,16 @@ RUN make build-static
 # --------------------- final image --------------------- #
 
 FROM $BASE_IMAGE
-
+RUN apt-get update && apt-get -y upgrade \
+    libnl-3-dev libnl-genl-3-dev build-essential git wget \
+    net-tools \
+	iproute \
+	inetutils-ping \
+    curl \
+        python \
+	python-yaml\
+    python-pip
+    
 WORKDIR /
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
@@ -40,5 +49,10 @@ ADD start.sh start.sh
 RUN chmod +x start.sh
 ADD stop.sh stop.sh
 RUN chmod +x stop.sh
+
+ADD data.py data.py
+RUN pip install requests\
+    jsonlib
+
 
 CMD /bin/bash

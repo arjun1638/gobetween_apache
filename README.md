@@ -13,4 +13,4 @@ Gobetween json output stat can be seen at
     -'http://172.20.0.5:8888/servers/sample/stats'
     
 
-Gobetween Repo cloned and modified from : https://hub.docker.com/r/yyyar/gobetween
+Gobetween Repo cloned and modified from : https://github.com/yyyar/gobetween

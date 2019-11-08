@@ -51,6 +51,9 @@ ADD stop.sh stop.sh
 RUN chmod +x stop.sh
 
 ADD data.py data.py
+ADD log_intf_statistics.py log_intf_statistics.py
+ADD process_ab_results.py process_ab_results.py
+
 RUN pip install requests\
     jsonlib
 

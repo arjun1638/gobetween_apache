@@ -60,18 +60,9 @@ def update_yml(path, data):
         yaml.safe_dump(old_data, f, default_flow_style=False)
 
 def add_rt_distribution_data(path, r):
-    """
-    Try to find distribution data and add it if available
-    """
-    try:
-        with open(path, "r") as f:
-            csv = f.read()
-            csv = csv.replace("\n",";")
-            csv = csv.replace("Percentage served,Time in ms;", "")
-        r["ab_rt_percentiles_csv"] = csv
-    except BaseException as ex:
-        print(ex)
-
+    f=open(path,"r")
+    r["ab_rt_percentiles_csv"] = f.readlines()
+    
 def main():
     INPUT = sys.argv[1]
     DIST_INPUT = sys.argv[2]

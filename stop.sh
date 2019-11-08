@@ -4,7 +4,7 @@ sleep 2
 python ./log_intf_statistics.py /tngbench_share/result.yml
 
 sleep 2
-python ./process_ab_results.py /tngbench_share/cmd_start.log /tngbench_share/go_data.csv /tngbench_share/result.yml
+python ./process_ab_results.py /tngbench_share/cmd_start.log /tngbench_share/go_data.txt /tngbench_share/result.yml
 
 
 date > /mnt/share/stop.txt

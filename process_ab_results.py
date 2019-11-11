@@ -61,7 +61,7 @@ def update_yml(path, data):
 
 def add_rt_distribution_data(path, r):
     f=open(path,"r")
-    r["ab_rt_percentiles_csv"] = f.readlines()
+    r["gobetween_stats"] = f.readlines()
     
 def main():
     INPUT = sys.argv[1]

@@ -60,8 +60,8 @@ def update_yml(path, data):
         yaml.safe_dump(old_data, f, default_flow_style=False)
 
 def add_rt_distribution_data(path, r):
-    with open(path) as json_file:
-        data = json.load(json_file)
+    with open(path, 'r') as myfile:
+        data=myfile.read()
     r["gobetween_stats"] = data
     
 def main():

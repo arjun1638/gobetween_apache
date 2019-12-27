@@ -51,9 +51,9 @@ bind = "20.0.0.254:9284"  # "host:port"
 #
 [defaults]
 max_connections = 0              # Maximum simultaneous connections to the server
-client_idle_timeout = "0"        # Client inactivity duration before forced connection drop
-backend_idle_timeout = "0"       # Backend inactivity duration before forced connection drop
-backend_connection_timeout = "0" # Backend connection timeout (ignored in udp)
+client_idle_timeout = "30s"        # Client inactivity duration before forced connection drop
+backend_idle_timeout = "30s"       # Backend inactivity duration before forced connection drop
+backend_connection_timeout = "30s" # Backend connection timeout (ignored in udp)
 
 #
 ## Acme (letsencrypt) configuration.
@@ -77,32 +77,19 @@ backend_connection_timeout = "0" # Backend connection timeout (ignored in udp)
 [servers.sample]
 protocol = "tcp"
 bind = "20.0.0.254:3000"
+balance = "weight"
+
 
   [servers.sample.discovery]
   kind = "static"
   static_list = [
       "40.0.0.254:80 weight=50 priority=0",
-      "50.0.0.254:80 weight=50 priority=0"
+      "50.0.0.254:80 weight=50 priority=0",
+      "60.0.0.254:80 weight=50 priority=0",
+      "70.0.0.254:80 weight=50 priority=0"
+
   ]
 
-# ---------- udp example ----------- #
-
-[servers.udpsample]
-bind = "localhost:4000"
-protocol = "udp"
-
-  [servers.udpsample.udp]
-  max_responses = 1
-
-  [servers.udpsample.discovery]
-  kind = "static"
-  static_list = [
-      "8.8.8.8:53",
-      "8.8.4.4:53",
-      "91.239.100.100:53"
-  ]
-
-#
 # -------------------- example ----------------------------- #
 
 ##
